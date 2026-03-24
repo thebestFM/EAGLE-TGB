@@ -1,0 +1,26 @@
+port: 7890
+socks-port: 7891
+allow-lan: false
+mode: rule
+log-level: info
+
+proxies:
+  - name: "Claude-Seattle"
+    type: socks5
+    server: 143.14.149.201
+    port: 1337
+    username: "lcjuq8k6ddu8"
+    password: "042mf6x6sxsw"
+    udp: false
+
+proxy-groups:
+  - name: "Proxy"
+    type: select
+    proxies:
+      - "Claude-Seattle"
+
+rules:
+  - DOMAIN-SUFFIX,ping0.cc,Proxy
+  - DOMAIN-SUFFIX,anthropic.com,Proxy
+  - DOMAIN-SUFFIX,claude.ai,Proxy
+  - MATCH,DIRECT
